@@ -27,6 +27,8 @@
   <exec_depend>effort_controllers</exec_depend>
 
   <exec_depend>dynaarm_single_example_description</exec_depend>
+  <exec_depend>duatic_control</exec_depend>
+  <exec_depend>dynaarm_bringup</exec_depend>
   <exec_depend>dynaarm_driver</exec_depend>
   <exec_depend>dynaarm_single_example_moveit_config</exec_depend>
   <exec_depend>dynaarm_controllers</exec_depend>
