@@ -108,9 +108,9 @@ def generate_launch_description():
     declared_arguments = [
         DeclareLaunchArgument(
             name="namespace",
-            default_value="dynaarm1",
+            default_value="",
         ),
-        DeclareLaunchArgument("world", default_value="duatic_empty", description="World name"),
+        DeclareLaunchArgument(name="world", default_value="duatic_empty", description="World name"),
     ]
 
     return LaunchDescription(declared_arguments + [OpaqueFunction(function=launch_setup)])
