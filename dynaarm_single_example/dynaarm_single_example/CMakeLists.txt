@@ -7,9 +7,8 @@ endif()
 
 # find dependencies
 find_package(ament_cmake REQUIRED)
-# uncomment the following section in order to fill in
-# further dependencies manually.
-# find_package(<dependency> REQUIRED)
+find_package(launch_testing_ament_cmake REQUIRED)
+
 
 install(DIRECTORY
   launch
@@ -17,7 +16,14 @@ install(DIRECTORY
 )
 
 if(BUILD_TESTING)
-
+    add_launch_test(
+        launch/mock.launch.py
+        TIMEOUT 60
+    )
+    add_launch_test(
+        launch/sim.launch.py
+        TIMEOUT 60
+    )
 endif()
 
 ament_package()
