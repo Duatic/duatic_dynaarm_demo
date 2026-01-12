@@ -17,11 +17,11 @@ install(DIRECTORY
 
 if(BUILD_TESTING)
     add_launch_test(
-        launch/mock.launch.py
+        test/test_launch_mock.py
         TIMEOUT 60
     )
     add_launch_test(
-        launch/sim.launch.py
+        test/test_launch_sim.py
         TIMEOUT 60
     )
 endif()
