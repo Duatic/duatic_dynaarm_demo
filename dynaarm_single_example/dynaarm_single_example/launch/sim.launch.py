@@ -51,7 +51,7 @@ def launch_setup(context, *args, **kwargs):
         launch_arguments={
             "namespace": LaunchConfiguration("namespace"),
             "world": LaunchConfiguration("world"),
-            "simulator": LaunchConfiguration("simulator")
+            "simulator": LaunchConfiguration("simulator"),
         }.items(),
     )
 
@@ -75,9 +75,8 @@ def launch_setup(context, *args, **kwargs):
             "world": LaunchConfiguration("world"),
         }.items(),
         condition=IfCondition(
-        PythonExpression([
-            "'", LaunchConfiguration("simulator"), "' == 'gazebo'"
-        ])),
+            PythonExpression(["'", LaunchConfiguration("simulator"), "' == 'gazebo'"])
+        ),
     )
 
     # Gamepad input
@@ -117,14 +116,12 @@ def generate_launch_description():
             name="namespace",
             default_value="",
         ),
-        DeclareLaunchArgument(
-            name="world", default_value="duatic_empty", description="World name"
-        ),
+        DeclareLaunchArgument(name="world", default_value="duatic_empty", description="World name"),
         DeclareLaunchArgument(
             "simulator",
             default_value="isaac",
             choices=["gazebo", "isaac"],
-            description="Which simulator backend to use."
+            description="Which simulator backend to use.",
         ),
     ]
 
