@@ -28,8 +28,10 @@ from launch.actions import (
     IncludeLaunchDescription,
     TimerAction,
 )
+
+from launch.conditions import IfCondition
 from launch.launch_description_sources import PythonLaunchDescriptionSource
-from launch.substitutions import LaunchConfiguration, PathJoinSubstitution
+from launch.substitutions import LaunchConfiguration, PathJoinSubstitution, PythonExpression
 
 from launch_ros.substitutions import FindPackageShare
 from launch_ros.actions import Node
@@ -49,6 +51,7 @@ def launch_setup(context, *args, **kwargs):
         launch_arguments={
             "namespace": LaunchConfiguration("namespace"),
             "world": LaunchConfiguration("world"),
+            "simulator": LaunchConfiguration("simulator"),
         }.items(),
     )
 
@@ -71,6 +74,9 @@ def launch_setup(context, *args, **kwargs):
         launch_arguments={
             "world": LaunchConfiguration("world"),
         }.items(),
+        condition=IfCondition(
+            PythonExpression(["'", LaunchConfiguration("simulator"), "' == 'gazebo'"])
+        ),
     )
 
     # Gamepad input
@@ -111,6 +117,12 @@ def generate_launch_description():
             default_value="",
         ),
         DeclareLaunchArgument(name="world", default_value="duatic_empty", description="World name"),
+        DeclareLaunchArgument(
+            "simulator",
+            default_value="isaac",
+            choices=["gazebo", "isaac"],
+            description="Which simulator backend to use.",
+        ),
     ]
 
     return LaunchDescription(declared_arguments + [OpaqueFunction(function=launch_setup)])
