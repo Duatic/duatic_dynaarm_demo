@@ -1,4 +1,4 @@
-# Copyright 2025 Duatic AG
+# Copyright 2026 Duatic AG
 #
 # Redistribution and use in source and binary forms, with or without modification, are permitted provided that
 # the following conditions are met:
@@ -76,7 +76,7 @@ def launch_setup(context, *args, **kwargs):
         period=10.0,
         actions=[
             Node(
-                package="dynaarm_extensions",
+                package="duatic_dynaarm_extensions",
                 executable="move_to_predefined_position_node",
                 namespace=LaunchConfiguration("namespace"),
                 name="move_to_predefined_position_node",
