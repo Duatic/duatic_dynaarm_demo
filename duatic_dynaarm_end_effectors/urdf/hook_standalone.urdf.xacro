@@ -2,7 +2,7 @@
 
   <xacro:arg name="tf_prefix" default="" />
 
-  <xacro:include filename="$(find dynaarm_end_effectors)/urdf/hook.urdf.xacro" />
+  <xacro:include filename="$(find duatic_dynaarm_end_effectors)/urdf/hook.urdf.xacro" />
 
   <link name="base_link" />
 

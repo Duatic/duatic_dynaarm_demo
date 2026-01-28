@@ -39,8 +39,8 @@ def launch_setup(context, *args, **kwargs):
     extension_value = extension.perform(context)
 
     # Load the robot description
-    pkg_share_description = FindPackageShare(package="dynaarm_end_effectors").find(
-        "dynaarm_end_effectors"
+    pkg_share_description = FindPackageShare(package="duatic_dynaarm_end_effectors").find(
+        "duatic_dynaarm_end_effectors"
     )
 
     doc = xacro.parse(
@@ -73,7 +73,7 @@ def launch_setup(context, *args, **kwargs):
         arguments=[
             "-d",
             os.path.join(
-                get_package_share_directory("dynaarm_description"),
+                get_package_share_directory("duatic_dynaarm_description"),
                 "config",
                 "config.rviz",
             ),

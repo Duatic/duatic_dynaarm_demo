@@ -25,28 +25,28 @@ IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISI
 OF
 THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
-<robot name="weight_5kg" xmlns:xacro="http://www.ros.org/wiki/xacro">
+<robot name="freedrive_handle" xmlns:xacro="http://www.ros.org/wiki/xacro">
 
   <!-- Link Definition -->
-<xacro:macro name="weight_5kg" params="tf_prefix parent *origin">
+<xacro:macro name="freedrive_handle" params="tf_prefix parent *origin">
 
-  <link name="${tf_prefix}weight_5kg_link">
+  <link name="${tf_prefix}freedrive_handle_link">
 
     <!-- Inertial Properties -->
     <inertial>
-      <origin xyz="0.026295 0 0.000104" rpy="0 0 0"/>
-      <mass value="5.417999"/>
+      <origin xyz="0.0423 0 0" rpy="0 0 0"/>
+      <mass value="0.149"/>
       <inertia
-        ixx="0.031114" ixy="0.0"  ixz="0.000015"
-        iyy="0.015956" iyz="0.0"
-        izz=" 0.019591"/>
+        ixx=" 0.0000520" ixy="0.0"  ixz="0.0"
+        iyy="0.0001585" iyz="0.0"
+        izz="0.0001585"/>
     </inertial>
 
     <!-- Visual -->
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-      <mesh filename="file://$(find dynaarm_end_effectors)/meshes/weight_mesh.stl" scale="1 1 1"/>
+      <mesh filename="file://$(find duatic_dynaarm_end_effectors)/meshes/freedrive_handle_mesh.stl" scale="1 1 1"/>
       </geometry>
       <material name="gray">
         <color rgba="0.6 0.6 0.6 1.0"/>
@@ -56,16 +56,16 @@ THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-      <mesh filename="file://$(find dynaarm_end_effectors)/meshes/weight_mesh.stl" scale="1 1 1"/>
+      <mesh filename="file://$(find duatic_dynaarm_end_effectors)/meshes/freedrive_handle_mesh.stl" scale="1 1 1"/>
       </geometry>
     </collision>
 
   </link>
 
   <!-- Fixed Joint to parent link -->
-  <joint name="${tf_prefix}weight_5kg_joint" type="fixed">
+  <joint name="${tf_prefix}freedrive_handle_joint" type="fixed">
     <parent link="${parent}"/>
-    <child link="${tf_prefix}weight_5kg_link"/>
+    <child link="${tf_prefix}freedrive_handle_link"/>
     <xacro:insert_block name="origin" />
   </joint>
 

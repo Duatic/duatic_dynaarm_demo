@@ -2,8 +2,8 @@
 
   <xacro:arg name="tf_prefix" default="" />
 
-  <xacro:include filename="$(find dynaarm_end_effectors)/urdf/shovel_gripper_right.urdf.xacro" />
-  <xacro:include filename="$(find dynaarm_end_effectors)/urdf/shovel_gripper_left.urdf.xacro" />
+  <xacro:include filename="$(find duatic_dynaarm_end_effectors)/urdf/shovel_gripper_right.urdf.xacro" />
+  <xacro:include filename="$(find duatic_dynaarm_end_effectors)/urdf/shovel_gripper_left.urdf.xacro" />
 
   <link name="base_link" />
 
