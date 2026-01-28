@@ -39,9 +39,9 @@ from launch_ros.actions import Node
 
 def launch_setup(context, *args, **kwargs):
     # Package Directories
-    pkg_duatic_simulation = FindPackageShare("duatic_simulation")
-    pkg_dynaarm_bringup = FindPackageShare("dynaarm_bringup")
-    pkg_dynaarm_description = FindPackageShare("dynaarm_description")
+    pkg_duatic_simulation = FindPackageShare("duatic_duatic_simulation")
+    pkg_dynaarm_bringup = FindPackageShare("duatic_dynaarm_bringup")
+    pkg_dynaarm_description = FindPackageShare("duatic_dynaarm_description")
 
     # Dynaarm Bringup
     dynaarm_bringup = IncludeLaunchDescription(

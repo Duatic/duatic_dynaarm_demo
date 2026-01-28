@@ -32,7 +32,7 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS “AS IS” 
 
   <xacro:arg name="namespace" default="dynaarm1" />
 
-  <xacro:include filename="$(find dynaarm_description)/urdf/dynaarm.urdf.xacro" />
+  <xacro:include filename="$(find duatic_dynaarm_description)/urdf/dynaarm.urdf.xacro" />
 
   <link name="base_link" />
 

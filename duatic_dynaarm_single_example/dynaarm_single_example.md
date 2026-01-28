@@ -1,4 +1,4 @@
-# dynaarm_single_example
+# duatic_dynaarm_single_example
 
 This is the most basic example how to integrate the DynaArm into any application.
 
@@ -7,12 +7,12 @@ This is the most basic example how to integrate the DynaArm into any application
 
 ### Content
 
-#### 1. Integrate and extend the [dynaarm_description](https://github.com/Duatic/dynaarm_description) in your own application.
-In this example the arm is placed on a virtual table. [See the code](./dynaarm_single_example_description/urdf/dynaarm_single_example.urdf.xacro)
+#### 1. Integrate and extend the [dynaarm_description](https://github.com/Duatic/duatic_dynaarm_description) in your own application.
+In this example the arm is placed on a virtual table. [See the code](./duatic_dynaarm_single_example_description/urdf/dynaarm_single_example.urdf.xacro)
 
 Run the basic visualisation of the extended model:
 ```
-ros2 launch dynaarm_single_example_description view.launch.py
+ros2 launch duatic_dynaarm_single_example_description view.launch.py
 ```
 
 #### 2. How to setup [MoveIt2](https://moveit.picknik.ai/main/index.html) with the DynaArm in your application.
@@ -28,12 +28,12 @@ ros2 launch dynaarm_single_example_moveit_config moveit.launch.py
 
 Choosing between "real" hardware and "mock" hardware is done by simply running a different configuration of the xacro model which then configures ros2control appropriately.
 
-See the [`real.launch.py`](./dynaarm_single_example/launch/real.launch.py) in contrast to the [`mock.launch.py`](./dynaarm_single_example/launch/mock.launch.py)
+See the [`real.launch.py`](./duatic_dynaarm_single_example/launch/real.launch.py) in contrast to the [`mock.launch.py`](./duatic_dynaarm_single_example/launch/mock.launch.py)
 
 Both launch files contain a vast variety of configuration options.
 For starting the example with real hardware you will need to at least configure the correct ethercat bus.
 
 Example if the ethercat bus is plugged to `eth0`
 ```
-ros2 launch dynaarm_single_example real.launch.py ethercat_bus:=eth0
+ros2 launch duatic_dynaarm_single_example real.launch.py ethercat_bus:=eth0
 ```

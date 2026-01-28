@@ -21,6 +21,7 @@
 # NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
 
+
 from launch import LaunchDescription
 from launch.actions import (
     DeclareLaunchArgument,
@@ -28,27 +29,24 @@ from launch.actions import (
     TimerAction,
     OpaqueFunction,
 )
-
-from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch.substitutions import LaunchConfiguration, PathJoinSubstitution
-
+from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch_ros.substitutions import FindPackageShare
 from launch_ros.actions import Node
 
 
 def launch_setup(context, *args, **kwargs):
     # Package Directories
-    pkg_dynaarm_bringup = FindPackageShare("dynaarm_bringup")
-    pkg_dynaarm_description = FindPackageShare("dynaarm_description")
+    pkg_dynaarm_bringup = FindPackageShare("duatic_dynaarm_bringup")
+    pkg_dynaarm_description = FindPackageShare("duatic_dynaarm_description")
 
     # Dynaarm Bringup
     dynaarm_bringup = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(
-            PathJoinSubstitution([pkg_dynaarm_bringup, "launch", "real.launch.py"])
+            PathJoinSubstitution([pkg_dynaarm_bringup, "launch", "mock.launch.py"])
         ),
         launch_arguments={
             "namespace": LaunchConfiguration("namespace"),
-            "ethercat_bus": LaunchConfiguration("ethercat_bus"),
         }.items(),
     )
 
@@ -88,27 +86,18 @@ def launch_setup(context, *args, **kwargs):
         ],
     )
 
-    nodes_to_start = [
-        dynaarm_bringup,
-        rviz,
-        move_to_predefined_position_node,
-        joy_node,
-    ]
+    nodes_to_start = [dynaarm_bringup, rviz, joy_node, move_to_predefined_position_node]
 
     return nodes_to_start
 
 
 def generate_launch_description():
 
+    # Declare the launch arguments
     declared_arguments = [
         DeclareLaunchArgument(
             name="namespace",
             default_value="",
-        ),
-        DeclareLaunchArgument(
-            name="ethercat_bus",
-            default_value="enx0c3796d6fae3",
-            description="The ethercat bus id or name of the robot.",
         ),
     ]
 

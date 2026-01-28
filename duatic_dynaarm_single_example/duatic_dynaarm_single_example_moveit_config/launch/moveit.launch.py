@@ -64,14 +64,14 @@ def launch_setup(context, *args, **kwargs):
         "namespace": LaunchConfiguration("namespace"),
     }
 
-    dynaarm_moveit_pkg = "dynaarm_single_example_moveit_config"
+    dynaarm_moveit_pkg = "duatic_dynaarm_single_example_moveit_config"
 
     # Depending on the mode we simply start one of the other launch files
     nodes_to_start = []
 
     if mode_value == "mock":
-        pkg_demo_mock = FindPackageShare(package="dynaarm_single_example").find(
-            "dynaarm_single_example"
+        pkg_demo_mock = FindPackageShare(package="duatic_dynaarm_single_example").find(
+            "duatic_dynaarm_single_example"
         )
 
         start_demo_mock = IncludeLaunchDescription(
@@ -88,8 +88,8 @@ def launch_setup(context, *args, **kwargs):
         nodes_to_start.append(start_demo_mock)
 
     elif mode_value == "real":
-        pkg_demo_real = FindPackageShare(package="dynaarm_single_example").find(
-            "dynaarm_single_example"
+        pkg_demo_real = FindPackageShare(package="duatic_dynaarm_single_example").find(
+            "duatic_dynaarm_single_example"
         )
 
         start_demo_real = IncludeLaunchDescription(
@@ -106,8 +106,8 @@ def launch_setup(context, *args, **kwargs):
 
         nodes_to_start.append(start_demo_real)
     elif mode_value == "sim":
-        pkg_demo_sim = FindPackageShare(package="dynaarm_single_example").find(
-            "dynaarm_single_example"
+        pkg_demo_sim = FindPackageShare(package="duatic_dynaarm_single_example").find(
+            "duatic_dynaarm_single_example"
         )
 
         start_demo_sim = IncludeLaunchDescription(
@@ -149,7 +149,7 @@ def launch_setup(context, *args, **kwargs):
 
     # Get parameters for the Servo node
     servo_params = {
-        "moveit_servo": ParameterBuilder("dynaarm_single_example_moveit_config")
+        "moveit_servo": ParameterBuilder("duatic_dynaarm_single_example_moveit_config")
         .yaml("config/dynaarm_servo_config.yaml")
         .to_dict()
     }

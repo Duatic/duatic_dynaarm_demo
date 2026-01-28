@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
 <package format="3">
-  <name>dynaarm_single_example_moveit_config</name>
+  <name>duatic_dynaarm_single_example_moveit_config</name>
   <version>1.0.0</version>
   <description>
      An automatically generated package with all the configuration and launch files for using the dynaarm with the MoveIt Motion Planning Framework
@@ -24,7 +24,7 @@
   <exec_depend>tf2_ros</exec_depend>
   <exec_depend>xacro</exec_depend>
   <exec_depend>controller_manager</exec_depend>
-  <exec_depend>dynaarm_single_example_description</exec_depend>
+  <exec_depend>duatic_dynaarm_single_example</exec_depend>
   <exec_depend>moveit_configs_utils</exec_depend>
   <exec_depend>moveit_ros_move_group</exec_depend>
   <exec_depend>moveit_ros_visualization</exec_depend>

@@ -63,9 +63,9 @@ def launch_setup(context, *args, **kwargs):
     version_value = version.perform(context)
 
     # Load the robot description
-    pkg_share_description = FindPackageShare(package="dynaarm_single_example_description").find(
-        "dynaarm_single_example_description"
-    )
+    pkg_share_description = FindPackageShare(
+        package="duatic_dynaarm_single_example_description"
+    ).find("duatic_dynaarm_single_example_description")
 
     doc = xacro.parse(
         open(os.path.join(pkg_share_description, "urdf/dynaarm_single_example.urdf.xacro"))
@@ -110,7 +110,7 @@ def launch_setup(context, *args, **kwargs):
         arguments=[
             "-d",
             os.path.join(
-                get_package_share_directory("dynaarm_description"),
+                get_package_share_directory("duatic_dynaarm_description"),
                 "config",
                 "config.rviz",
             ),
