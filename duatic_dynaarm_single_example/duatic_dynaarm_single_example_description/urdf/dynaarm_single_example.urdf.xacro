@@ -32,7 +32,7 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS “AS IS” 
 
   <xacro:arg name="namespace" default="dynaarm1" />
 
-  <xacro:include filename="$(find duatic_dynaarm_description)/urdf/dynaarm.urdf.xacro" />
+  <xacro:include filename="$(find duatic_dynaarm_driver)/urdf/dynaarm.urdf.xacro" />
 
   <link name="base_link" />
 
@@ -62,7 +62,7 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS “AS IS” 
 
 
   <!-- create an instance of the dynaarm and fix its base-->
-  <xacro:dynaarm tf_prefix="$(arg tf_prefix)"
+  <xacro:dynaarm_control tf_prefix="$(arg tf_prefix)"
                 parent_link="table"
                 dof="$(arg dof)"
                 collision="$(arg collision)"
@@ -71,9 +71,10 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS “AS IS” 
                 covers="$(arg covers)"
                 version="$(arg version)">
     <origin xyz="0 0 0" rpy="0.0 0.0 0.0" />
-  </xacro:dynaarm>
+  </xacro:dynaarm_control>
 
   <!-- Gazebo Ros2 Control -->
+
   <xacro:include filename="$(find duatic_control)/urdf/plugins.urdf.xacro" />
   <xacro:control namespace="$(arg namespace)">
     <remapping>cmd_vel:=cmd_vel</remapping> <!-- TODO: This line only exists, because otherwise the xacro doesn't compile -->

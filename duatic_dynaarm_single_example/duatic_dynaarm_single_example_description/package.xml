@@ -17,6 +17,8 @@
   <test_depend>ament_lint_common</test_depend>
 
   <depend>duatic_dynaarm_description</depend>
+  <!--NOTE this is only needed for the ros2control part of the xacro-->
+  <depend>duatic_dynaarm_driver</depend>
 
   <export>
     <build_type>ament_cmake</build_type>
