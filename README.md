@@ -13,8 +13,8 @@ All dependencies with their corresponding version are listed in the [repos.list]
 
 | Name | Description | License
 | ---  | --- | --- |
-| [dynaarm_driver](https://github.com/Duatic/dynaarm_driver/) | ros2control based driver for the DynaArm | BSD-3-Clause |
-| [dynaarm_description](https://github.com/Duatic/dynaarm_description) | URDF description of the DynaArm | BSD-3-Clause |
+| [duatic_dynaarm_driver](https://github.com/Duatic/duatic_dynaarm_driver/) | ros2control based driver for the DynaArm | BSD-3-Clause |
+| [duatic_dynaarm_description](https://github.com/Duatic/duatic_dynaarm_description) | URDF description of the DynaArm | BSD-3-Clause |
 | [ethercat_sdk_master](https://github.com/Duatic/ethercat_sdk_master) | Object oriented wrapper around the soem_interface | BSD-3-Clause |
 | [rsl_drive_sdk](https://github.com/leggedrobotics/rsl_drive_sdk) | Basic drive sdk for the DynaDrives | BSD-3-Clause |
 | [soem_interface](https://github.com/Duatic/soem_interface) | Ethercat wrapper library around SOME | GPL v3 |
