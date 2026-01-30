@@ -19,6 +19,7 @@
   <depend>duatic_dynaarm_description</depend>
   <!--NOTE this is only needed for the ros2control part of the xacro-->
   <depend>duatic_dynaarm_driver</depend>
+  <depend>duatic_gazebo</depend>
 
   <export>
     <build_type>ament_cmake</build_type>

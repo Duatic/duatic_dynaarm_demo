@@ -39,7 +39,7 @@ from launch_ros.actions import Node
 
 def launch_setup(context, *args, **kwargs):
     # Package Directories
-    pkg_duatic_simulation = FindPackageShare("duatic_simulation")
+    pkg_duatic_gazebo = FindPackageShare("duatic_gazebo")
     pkg_dynaarm_bringup = FindPackageShare("duatic_dynaarm_bringup")
     pkg_dynaarm_description = FindPackageShare("duatic_dynaarm_description")
 
@@ -79,7 +79,7 @@ def launch_setup(context, *args, **kwargs):
     # Gazebo Simulation
     simulation = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(
-            PathJoinSubstitution([pkg_duatic_simulation, "launch", "gazebo.launch.py"])
+            PathJoinSubstitution([pkg_duatic_gazebo, "launch", "gazebo.launch.py"])
         ),
         launch_arguments={
             "world": LaunchConfiguration("world"),
