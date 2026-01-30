@@ -40,6 +40,15 @@ def launch_setup(context, *args, **kwargs):
     pkg_dynaarm_bringup = FindPackageShare("duatic_dynaarm_bringup")
     pkg_dynaarm_description = FindPackageShare("duatic_dynaarm_description")
 
+    # Use the actual description of this package !
+    pkg_dynaarm_single_arm_example_description = PathJoinSubstitution(
+        [
+            FindPackageShare("duatic_dynaarm_single_example_description"),
+            "urdf",
+            "dynaarm_single_example.urdf.xacro",
+        ]
+    )
+
     # Dynaarm Bringup
     dynaarm_bringup = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(
@@ -47,6 +56,7 @@ def launch_setup(context, *args, **kwargs):
         ),
         launch_arguments={
             "namespace": LaunchConfiguration("namespace"),
+            "urdf_file_path": pkg_dynaarm_single_arm_example_description,
         }.items(),
     )
 
