@@ -62,7 +62,7 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS “AS IS” 
 
 
   <!-- create an instance of the dynaarm and fix its base-->
-  <xacro:dynaarm_control tf_prefix="$(arg tf_prefix)"
+  <xacro:dynaarm tf_prefix="$(arg tf_prefix)"
                 parent_link="table"
                 dof="$(arg dof)"
                 collision="$(arg collision)"
@@ -71,7 +71,7 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS “AS IS” 
                 covers="$(arg covers)"
                 version="$(arg version)">
     <origin xyz="0 0 0" rpy="0.0 0.0 0.0" />
-  </xacro:dynaarm_control>
+  </xacro:dynaarm>
 
   <!-- Gazebo Ros2 Control -->
 
