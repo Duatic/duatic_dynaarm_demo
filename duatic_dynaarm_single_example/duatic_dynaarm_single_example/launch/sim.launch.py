@@ -128,8 +128,8 @@ def generate_launch_description():
         ),
         DeclareLaunchArgument(name="world", default_value="duatic_empty", description="World name"),
         DeclareLaunchArgument(
-            "simulator",
-            default_value="isaac",
+            name="simulator",
+            default_value="gazebo",
             choices=["gazebo", "isaac"],
             description="Which simulator backend to use.",
         ),

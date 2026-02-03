@@ -34,7 +34,7 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS “AS IS” 
 
   <xacro:include filename="$(find duatic_dynaarm_driver)/urdf/dynaarm.urdf.xacro" />
 
-  <link name="base_link" />
+<link name="base_link" />
 
   <link name="table">
     <visual>
@@ -46,20 +46,24 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS “AS IS” 
         <color rgba="0.9 0.83 0.733 1.0"/>
       </material>
     </visual>
-
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
           <box size="1.0 1.0 0.05"/>
       </geometry>
     </collision>
+    <inertial>
+      <mass value="10.0"/>
+      <origin xyz="0 0 0"/>
+      <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0"/>
+    </inertial>
   </link>
 
   <joint name="table_joint" type="fixed">
     <parent link="base_link"/>
     <child link="table"/>
+    <origin xyz="0 0 -0.025" rpy="0 0 0"/>
   </joint>
-
 
   <!-- create an instance of the dynaarm and fix its base-->
   <xacro:dynaarm tf_prefix="$(arg tf_prefix)"
@@ -73,11 +77,10 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS “AS IS” 
     <origin xyz="0 0 0" rpy="0.0 0.0 0.0" />
   </xacro:dynaarm>
 
-  <!-- Gazebo Ros2 Control -->
-
+  <!-- Include the control plugin -->
   <xacro:include filename="$(find duatic_control)/urdf/plugins.urdf.xacro" />
   <xacro:control namespace="$(arg namespace)">
-    <remapping>cmd_vel:=cmd_vel</remapping> <!-- TODO: This line only exists, because otherwise the xacro doesn't compile -->
+    <remapping>cmd_vel:=/cmd_vel</remapping> <!-- TODO: This line only exists, because otherwise the xacro doesn't compile -->
   </xacro:control>
 
 </robot>
