@@ -1,5 +1,7 @@
 # dynaarm_demo
 
+ [![Jazzy Build Main](https://github.com/Duatic/duatic_dynaarm_demo/actions/workflows/build-jazzy.yml/badge.svg?branch=main)](https://github.com/Duatic/duatic_dynaarm_demo/actions/workflows/build-jazzy.yml) [![Kilted Build Main](https://github.com/Duatic/duatic_dynaarm_demo/actions/workflows/build-kilted.yml/badge.svg?branch=main)](https://github.com/Duatic/duatic_dynaarm_demo/actions/workflows/build-kilted.yml) [![Rolling Build Main](https://github.com/Duatic/duatic_dynaarm_demo/actions/workflows/build-rolling.yml/badge.svg?branch=main)](https://github.com/Duatic/duatic_dynaarm_demo/actions/workflows/build-rolling.yml)
+
 This repository contains some simple demo application the [ros2_control](https://control.ros.org/) based driver for the [Duatic DynaArm](https://duatic.com/robotic-arm/)
 
 # License
