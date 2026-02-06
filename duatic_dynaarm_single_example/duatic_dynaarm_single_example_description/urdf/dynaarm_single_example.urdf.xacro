@@ -79,6 +79,6 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS “AS IS” 
 
   <!-- Include the control plugin -->
   <xacro:include filename="$(find duatic_control)/urdf/plugins.urdf.xacro" />
-  <xacro:control namespace="$(arg namespace)" />  
+  <xacro:control namespace="$(arg namespace)" />
 
 </robot>
