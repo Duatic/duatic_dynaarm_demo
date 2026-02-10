@@ -60,7 +60,7 @@ def launch_setup(context, *args, **kwargs):
             "namespace": LaunchConfiguration("namespace"),
             "ethercat_bus": LaunchConfiguration("ethercat_bus"),
             "urdf_file_path": pkg_dynaarm_single_arm_example_description,
-            "ros2_control_params": LaunchConfiguration("ros2_control_params"),
+            "controllers_config": LaunchConfiguration("controllers_config"),
         }.items(),
     )
 
@@ -123,7 +123,7 @@ def generate_launch_description():
             description="The ethercat bus id or name of the robot.",
         ),
         DeclareLaunchArgument(
-            "ros2_control_params",
+            "controllers_config",
             default_value=get_package_share_directory("duatic_dynaarm_single_example")
             + "/config/controllers.yaml",
             description="Path to the controllers config file",
