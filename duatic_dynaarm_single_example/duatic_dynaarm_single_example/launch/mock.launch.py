@@ -22,6 +22,7 @@
 # POSSIBILITY OF SUCH DAMAGE.
 
 
+from ament_index_python import get_package_share_directory
 from launch import LaunchDescription
 from launch.actions import (
     DeclareLaunchArgument,
@@ -57,6 +58,7 @@ def launch_setup(context, *args, **kwargs):
         launch_arguments={
             "namespace": LaunchConfiguration("namespace"),
             "urdf_file_path": pkg_dynaarm_single_arm_example_description,
+            "ros2_control_params": LaunchConfiguration("ros2_control_params"),
         }.items(),
     )
 
@@ -108,6 +110,12 @@ def generate_launch_description():
         DeclareLaunchArgument(
             name="namespace",
             default_value="",
+        ),
+        DeclareLaunchArgument(
+            "ros2_control_params",
+            default_value=get_package_share_directory("duatic_dynaarm_single_example")
+            + "/config/controllers.yaml",
+            description="Path to the controllers config file",
         ),
     ]
 

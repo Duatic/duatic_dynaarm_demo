@@ -21,6 +21,7 @@
 # NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
 
+from ament_index_python import get_package_share_directory
 from launch import LaunchDescription
 from launch.actions import (
     DeclareLaunchArgument,
@@ -59,6 +60,7 @@ def launch_setup(context, *args, **kwargs):
             "namespace": LaunchConfiguration("namespace"),
             "ethercat_bus": LaunchConfiguration("ethercat_bus"),
             "urdf_file_path": pkg_dynaarm_single_arm_example_description,
+            "ros2_control_params": LaunchConfiguration("ros2_control_params"),
         }.items(),
     )
 
@@ -119,6 +121,12 @@ def generate_launch_description():
             name="ethercat_bus",
             default_value="enx0c3796d6fae3",
             description="The ethercat bus id or name of the robot.",
+        ),
+        DeclareLaunchArgument(
+            "ros2_control_params",
+            default_value=get_package_share_directory("duatic_dynaarm_single_example")
+            + "/config/controllers.yaml",
+            description="Path to the controllers config file",
         ),
     ]
 
