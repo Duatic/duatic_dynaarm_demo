@@ -1,0 +1,51 @@
+/**:
+  controller_manager:
+    ros__parameters:
+
+      joint_state_broadcaster<suffix>:
+        type: joint_state_broadcaster/JointStateBroadcaster
+        state: active
+
+      joint_trajectory_controller<suffix>:
+        type: joint_trajectory_controller/JointTrajectoryController
+        state: active
+
+/**/joint_state_broadcaster<suffix>:
+  ros__parameters:
+    use_urdf_to_filter: false
+    joints:
+      - <prefix>shoulder_rotation
+      - <prefix>shoulder_flexion
+      - <prefix>elbow_flexion
+      - <prefix>forearm_rotation
+      - <prefix>wrist_flexion
+      - <prefix>wrist_rotation
+
+/**/joint_trajectory_controller<suffix>:
+  ros__parameters:
+    joints:
+      - <prefix>shoulder_rotation
+      - <prefix>shoulder_flexion
+      - <prefix>elbow_flexion
+      - <prefix>forearm_rotation
+      - <prefix>wrist_flexion
+      - <prefix>wrist_rotation
+    command_interfaces:
+      - position
+      - velocity
+    state_interfaces:
+      - position
+      - velocity
+    # See https://control.ros.org/jazzy/doc/ros2_controllers/joint_trajectory_controller/doc/parameters.html for a full list of all parameters
+    allow_partial_joints_goal: false # trajectory needs to contains goals from all joints handled by the controller
+    allow_nonzero_velocity_at_trajectory_end: true
+    constraints:
+      stopped_velocity_tolerance: 0.5
+      goal_time: 0.05
+      # Tolerances for each joint
+      shoulder_rotation: { trajectory: 0.5, goal: 0.05 }
+      shoulder_flexion: { trajectory: 0.5, goal: 0.05 }
+      elbow_flexion: { trajectory: 0.5, goal: 0.05 }
+      forearm_rotation: { trajectory: 0.5, goal: 0.05 }
+      wrist_flexion: { trajectory: 0.5, goal: 0.05 }
+      wrist_rotation: { trajectory: 0.5, goal: 0.05 }

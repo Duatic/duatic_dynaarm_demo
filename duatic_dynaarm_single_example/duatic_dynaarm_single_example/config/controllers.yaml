@@ -1,0 +1,121 @@
+/**:
+  controller_manager:
+    ros__parameters:
+
+      joint_state_broadcaster<suffix>:
+        type: joint_state_broadcaster/JointStateBroadcaster
+        state: active
+
+      dynaarm_status_broadcaster<suffix>:
+        type: duatic_dynaarm_controllers/StatusBroadcaster
+        state: active
+
+      gravity_compensation_controller<suffix>:
+        type: duatic_dynaarm_controllers/GravityCompensationController
+        state: active
+
+      freedrive_controller<suffix>:
+        type: duatic_dynaarm_controllers/FreeDriveController
+        state: inactive
+
+      joint_trajectory_controller<suffix>:
+        type: joint_trajectory_controller/JointTrajectoryController
+        state: inactive
+
+      freeze_controller<suffix>:
+        type: duatic_dynaarm_controllers/FreezeController
+        state: active
+
+      cartesian_pose_controller<suffix>:
+        type: duatic_dynaarm_controllers/CartesianPoseController
+        state: inactive
+
+/**/joint_state_broadcaster<suffix>:
+  ros__parameters:
+    use_urdf_to_filter: false
+    joints:
+      - <prefix>shoulder_rotation
+      - <prefix>shoulder_flexion
+      - <prefix>elbow_flexion
+      - <prefix>forearm_rotation
+      - <prefix>wrist_flexion
+      - <prefix>wrist_rotation
+
+/**/dynaarm_status_broadcaster<suffix>:
+  ros__parameters:
+    joints:
+      - <prefix>shoulder_rotation
+      - <prefix>shoulder_flexion
+      - <prefix>elbow_flexion
+      - <prefix>forearm_rotation
+      - <prefix>wrist_flexion
+      - <prefix>wrist_rotation
+
+/**/joint_trajectory_controller<suffix>:
+  ros__parameters:
+    joints:
+      - <prefix>shoulder_rotation
+      - <prefix>shoulder_flexion
+      - <prefix>elbow_flexion
+      - <prefix>forearm_rotation
+      - <prefix>wrist_flexion
+      - <prefix>wrist_rotation
+    command_interfaces:
+      - position
+      - velocity
+    state_interfaces:
+      - position
+      - velocity
+    # See https://control.ros.org/jazzy/doc/ros2_controllers/joint_trajectory_controller/doc/parameters.html for a full list of all parameters
+    allow_partial_joints_goal: false # trajectory needs to contains goals from all joints handled by the controller
+    allow_nonzero_velocity_at_trajectory_end: true
+    constraints:
+      stopped_velocity_tolerance: 0.5
+      goal_time: 0.05
+      # Tolerances for each joint
+      shoulder_rotation: { trajectory: 0.5, goal: 0.05 }
+      shoulder_flexion: { trajectory: 0.5, goal: 0.05 }
+      elbow_flexion: { trajectory: 0.5, goal: 0.05 }
+      forearm_rotation: { trajectory: 0.5, goal: 0.05 }
+      wrist_flexion: { trajectory: 0.5, goal: 0.05 }
+      wrist_rotation: { trajectory: 0.5, goal: 0.05 }
+
+/**/gravity_compensation_controller<suffix>:
+  ros__parameters:
+    joints:
+      - <prefix>shoulder_rotation
+      - <prefix>shoulder_flexion
+      - <prefix>elbow_flexion
+      - <prefix>forearm_rotation
+      - <prefix>wrist_flexion
+      - <prefix>wrist_rotation
+
+/**/freedrive_controller<suffix>:
+  ros__parameters:
+    joints:
+      - <prefix>shoulder_rotation
+      - <prefix>shoulder_flexion
+      - <prefix>elbow_flexion
+      - <prefix>forearm_rotation
+      - <prefix>wrist_flexion
+      - <prefix>wrist_rotation
+
+/**/freeze_controller<suffix>:
+  ros__parameters:
+    names:
+      - <prefix>DynaarmSystem
+
+/**/cartesian_pose_controller<suffix>:
+  ros__parameters:
+    joints:
+      - <prefix>shoulder_rotation
+      - <prefix>shoulder_flexion
+      - <prefix>elbow_flexion
+      - <prefix>forearm_rotation
+      - <prefix>wrist_flexion
+      - <prefix>wrist_rotation
+    command_interfaces:
+      - position
+      - velocity
+    end_effector_frame: <prefix>flange
+    srdf: <srdf>
