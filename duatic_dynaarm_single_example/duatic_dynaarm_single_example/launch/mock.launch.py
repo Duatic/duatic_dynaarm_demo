@@ -33,6 +33,7 @@ from launch.substitutions import LaunchConfiguration, PathJoinSubstitution
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch_ros.substitutions import FindPackageShare
 from launch_ros.actions import Node
+from ament_index_python.packages import get_package_share_directory
 
 
 def launch_setup(context, *args, **kwargs):
@@ -57,6 +58,7 @@ def launch_setup(context, *args, **kwargs):
         launch_arguments={
             "namespace": LaunchConfiguration("namespace"),
             "urdf_file_path": pkg_dynaarm_single_arm_example_description,
+            "ros2_control_params_arm": LaunchConfiguration("ros2_control_params_arm"),
         }.items(),
     )
 
@@ -108,6 +110,12 @@ def generate_launch_description():
         DeclareLaunchArgument(
             name="namespace",
             default_value="",
+        ),
+        DeclareLaunchArgument(
+            name="ros2_control_params_arm",
+            default_value=get_package_share_directory("duatic_dynaarm_single_example")
+            + "/config/controllers.yaml",
+            description="Path to the controllers config file",
         ),
     ]
 
