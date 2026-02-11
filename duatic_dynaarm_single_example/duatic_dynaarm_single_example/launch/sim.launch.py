@@ -21,6 +21,7 @@
 # NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
 
+from ament_index_python import get_package_share_directory
 from launch import LaunchDescription
 from launch.actions import (
     DeclareLaunchArgument,
@@ -62,6 +63,7 @@ def launch_setup(context, *args, **kwargs):
             "world": LaunchConfiguration("world"),
             "simulator": LaunchConfiguration("simulator"),
             "urdf_file_path": pkg_dynaarm_single_arm_example_description,
+            "controllers_config": LaunchConfiguration("controllers_config"),
         }.items(),
     )
 
@@ -132,6 +134,12 @@ def generate_launch_description():
             default_value="gazebo",
             choices=["gazebo", "isaac"],
             description="Which simulator backend to use.",
+        ),
+        DeclareLaunchArgument(
+            "controllers_config",
+            default_value=get_package_share_directory("duatic_dynaarm_single_example")
+            + "/config/controllers_sim.yaml",
+            description="Path to the controllers config file",
         ),
     ]
 
