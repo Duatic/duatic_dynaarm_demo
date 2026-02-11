@@ -36,7 +36,6 @@ from launch_ros.actions import Node
 from launch_ros.substitutions import FindPackageShare
 
 from moveit_configs_utils import MoveItConfigsBuilder
-from launch_param_builder import ParameterBuilder
 import os
 
 
