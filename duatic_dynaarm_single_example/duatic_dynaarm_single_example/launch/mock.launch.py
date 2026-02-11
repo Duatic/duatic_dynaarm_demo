@@ -96,7 +96,7 @@ def launch_setup(context, *args, **kwargs):
         ],
     )
 
-    nodes_to_start = [dynaarm_bringup, rviz, joy_node, move_to_predefined_position_node]
+    nodes_to_start = [dynaarm_bringup, joy_node, rviz, move_to_predefined_position_node]
 
     return nodes_to_start
 

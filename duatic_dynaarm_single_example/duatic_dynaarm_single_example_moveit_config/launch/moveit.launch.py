@@ -220,7 +220,7 @@ def generate_launch_description():
     declared_arguments.append(
         DeclareLaunchArgument(
             name="namespace",
-            default_value="moveit_demo",
+            default_value="",
             description="Namespace for all launched nodes.",
         )
     )
