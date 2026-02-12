@@ -2,64 +2,64 @@
   controller_manager:
     ros__parameters:
 
-      joint_state_broadcaster<suffix>:
+      joint_state_broadcaster:
         type: joint_state_broadcaster/JointStateBroadcaster
         state: active
 
-      dynaarm_status_broadcaster<suffix>:
+      dynaarm_status_broadcaster:
         type: duatic_dynaarm_controllers/StatusBroadcaster
         state: active
 
-      gravity_compensation_controller<suffix>:
+      gravity_compensation_controller:
         type: duatic_dynaarm_controllers/GravityCompensationController
         state: active
 
-      freedrive_controller<suffix>:
+      freedrive_controller:
         type: duatic_dynaarm_controllers/FreeDriveController
         state: inactive
 
-      joint_trajectory_controller<suffix>:
+      joint_trajectory_controller:
         type: joint_trajectory_controller/JointTrajectoryController
         state: inactive
 
-      freeze_controller<suffix>:
+      freeze_controller:
         type: duatic_dynaarm_controllers/FreezeController
         state: active
 
-      cartesian_pose_controller<suffix>:
+      cartesian_pose_controller:
         type: duatic_dynaarm_controllers/CartesianPoseController
         state: inactive
 
-/**/joint_state_broadcaster<suffix>:
+/**/joint_state_broadcaster:
   ros__parameters:
     use_urdf_to_filter: false
     joints:
-      - <prefix>shoulder_rotation
-      - <prefix>shoulder_flexion
-      - <prefix>elbow_flexion
-      - <prefix>forearm_rotation
-      - <prefix>wrist_flexion
-      - <prefix>wrist_rotation
+      - shoulder_rotation
+      - shoulder_flexion
+      - elbow_flexion
+      - forearm_rotation
+      - wrist_flexion
+      - wrist_rotation
 
-/**/dynaarm_status_broadcaster<suffix>:
+/**/dynaarm_status_broadcaster:
   ros__parameters:
     joints:
-      - <prefix>shoulder_rotation
-      - <prefix>shoulder_flexion
-      - <prefix>elbow_flexion
-      - <prefix>forearm_rotation
-      - <prefix>wrist_flexion
-      - <prefix>wrist_rotation
+      - shoulder_rotation
+      - shoulder_flexion
+      - elbow_flexion
+      - forearm_rotation
+      - wrist_flexion
+      - wrist_rotation
 
-/**/joint_trajectory_controller<suffix>:
+/**/joint_trajectory_controller:
   ros__parameters:
     joints:
-      - <prefix>shoulder_rotation
-      - <prefix>shoulder_flexion
-      - <prefix>elbow_flexion
-      - <prefix>forearm_rotation
-      - <prefix>wrist_flexion
-      - <prefix>wrist_rotation
+      - shoulder_rotation
+      - shoulder_flexion
+      - elbow_flexion
+      - forearm_rotation
+      - wrist_flexion
+      - wrist_rotation
     command_interfaces:
       - position
       - velocity
@@ -80,42 +80,42 @@
       wrist_flexion: { trajectory: 0.5, goal: 0.05 }
       wrist_rotation: { trajectory: 0.5, goal: 0.05 }
 
-/**/gravity_compensation_controller<suffix>:
+/**/gravity_compensation_controller:
   ros__parameters:
     joints:
-      - <prefix>shoulder_rotation
-      - <prefix>shoulder_flexion
-      - <prefix>elbow_flexion
-      - <prefix>forearm_rotation
-      - <prefix>wrist_flexion
-      - <prefix>wrist_rotation
+      - shoulder_rotation
+      - shoulder_flexion
+      - elbow_flexion
+      - forearm_rotation
+      - wrist_flexion
+      - wrist_rotation
 
-/**/freedrive_controller<suffix>:
+/**/freedrive_controller:
   ros__parameters:
     joints:
-      - <prefix>shoulder_rotation
-      - <prefix>shoulder_flexion
-      - <prefix>elbow_flexion
-      - <prefix>forearm_rotation
-      - <prefix>wrist_flexion
-      - <prefix>wrist_rotation
+      - shoulder_rotation
+      - shoulder_flexion
+      - elbow_flexion
+      - forearm_rotation
+      - wrist_flexion
+      - wrist_rotation
 
-/**/freeze_controller<suffix>:
+/**/freeze_controller:
   ros__parameters:
     names:
-      - <prefix>DynaarmSystem
+      - DynaarmSystem
 
-/**/cartesian_pose_controller<suffix>:
+/**/cartesian_pose_controller:
   ros__parameters:
     joints:
-      - <prefix>shoulder_rotation
-      - <prefix>shoulder_flexion
-      - <prefix>elbow_flexion
-      - <prefix>forearm_rotation
-      - <prefix>wrist_flexion
-      - <prefix>wrist_rotation
+      - shoulder_rotation
+      - shoulder_flexion
+      - elbow_flexion
+      - forearm_rotation
+      - wrist_flexion
+      - wrist_rotation
     command_interfaces:
       - position
       - velocity
-    end_effector_frame: <prefix>flange
+    end_effector_frame: flange
     srdf: <srdf>
