@@ -26,10 +26,6 @@
         type: duatic_dynaarm_controllers/FreezeController
         state: active
 
-      cartesian_pose_controller:
-        type: duatic_dynaarm_controllers/CartesianPoseController
-        state: inactive
-
 /**/joint_state_broadcaster:
   ros__parameters:
     use_urdf_to_filter: false
@@ -69,6 +65,7 @@
     # See https://control.ros.org/jazzy/doc/ros2_controllers/joint_trajectory_controller/doc/parameters.html for a full list of all parameters
     allow_partial_joints_goal: false # trajectory needs to contains goals from all joints handled by the controller
     allow_nonzero_velocity_at_trajectory_end: true
+    # set_last_command_interface_value_as_state_on_activation: false
     constraints:
       stopped_velocity_tolerance: 0.5
       goal_time: 0.05
@@ -104,18 +101,3 @@
   ros__parameters:
     names:
       - DynaarmSystem
-
-/**/cartesian_pose_controller:
-  ros__parameters:
-    joints:
-      - shoulder_rotation
-      - shoulder_flexion
-      - elbow_flexion
-      - forearm_rotation
-      - wrist_flexion
-      - wrist_rotation
-    command_interfaces:
-      - position
-      - velocity
-    end_effector_frame: flange
-    srdf: <srdf>
