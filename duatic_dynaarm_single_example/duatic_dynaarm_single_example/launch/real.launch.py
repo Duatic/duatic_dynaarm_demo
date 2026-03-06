@@ -26,7 +26,6 @@ from launch import LaunchDescription
 from launch.actions import (
     DeclareLaunchArgument,
     IncludeLaunchDescription,
-    TimerAction,
     OpaqueFunction,
 )
 
@@ -102,7 +101,7 @@ def generate_launch_description():
         ),
         DeclareLaunchArgument(
             name="ethercat_bus",
-            default_value="enx3c18a0cd5328",
+            default_value="enp86s0",
             description="The ethercat bus id or name of the robot.",
         ),
         DeclareLaunchArgument(
