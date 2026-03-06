@@ -26,9 +26,9 @@
         type: duatic_dynaarm_controllers/FreezeController
         state: active
 
-      cartesian_pose_controller:
-        type: duatic_dynaarm_controllers/CartesianPoseController
-        state: inactive
+      virtual_fts:
+        type: duatic_dynaarm_controllers/ForceTorqueBroadcaster
+        state: active
 
 /**/joint_state_broadcaster:
   ros__parameters:
@@ -50,6 +50,18 @@
       - forearm_rotation
       - wrist_flexion
       - wrist_rotation
+
+/**/virtual_fts:
+  ros__parameters:
+    joints:
+      - shoulder_rotation
+      - shoulder_flexion
+      - elbow_flexion
+      - forearm_rotation
+      - wrist_flexion
+      - wrist_rotation
+    endeffector_frame: "flange"
+    use_svd_solver: true
 
 /**/joint_trajectory_controller:
   ros__parameters:
