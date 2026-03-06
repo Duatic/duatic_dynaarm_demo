@@ -26,7 +26,6 @@ from launch import LaunchDescription
 from launch.actions import (
     DeclareLaunchArgument,
     IncludeLaunchDescription,
-    TimerAction,
     OpaqueFunction,
 )
 
@@ -84,26 +83,9 @@ def launch_setup(context, *args, **kwargs):
         parameters=[{"autorepeat_rate": 100.0}],
     )
 
-    # Move Arms to Start Position
-    # TODO: Find a better way to delay this node start until controllers are ready
-    move_to_predefined_position_node = TimerAction(
-        period=10.0,
-        actions=[
-            Node(
-                package="duatic_dynaarm_extensions",
-                executable="move_to_predefined_position_node",
-                namespace=LaunchConfiguration("namespace"),
-                name="move_to_predefined_position_node",
-                output="screen",
-                parameters=[{"robot_configuration": "dynaarm"}],
-            )
-        ],
-    )
-
     nodes_to_start = [
         dynaarm_bringup,
         rviz,
-        move_to_predefined_position_node,
         joy_node,
     ]
 
@@ -119,7 +101,7 @@ def generate_launch_description():
         ),
         DeclareLaunchArgument(
             name="ethercat_bus",
-            default_value="enx0c3796d6fae3",
+            default_value="enp86s0",
             description="The ethercat bus id or name of the robot.",
         ),
         DeclareLaunchArgument(
