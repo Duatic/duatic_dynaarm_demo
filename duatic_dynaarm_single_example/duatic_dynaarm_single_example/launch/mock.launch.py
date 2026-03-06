@@ -27,7 +27,6 @@ from launch import LaunchDescription
 from launch.actions import (
     DeclareLaunchArgument,
     IncludeLaunchDescription,
-    TimerAction,
     OpaqueFunction,
 )
 from launch.substitutions import LaunchConfiguration, PathJoinSubstitution
@@ -82,23 +81,7 @@ def launch_setup(context, *args, **kwargs):
         parameters=[{"autorepeat_rate": 100.0}],
     )
 
-    # Move Arms to Start Position
-    # TODO: Find a better way to delay this node start until controllers are ready
-    move_to_predefined_position_node = TimerAction(
-        period=10.0,
-        actions=[
-            Node(
-                package="duatic_dynaarm_extensions",
-                executable="move_to_predefined_position_node",
-                namespace=LaunchConfiguration("namespace"),
-                name="move_to_predefined_position_node",
-                output="screen",
-                parameters=[{"robot_configuration": "dynaarm"}],
-            )
-        ],
-    )
-
-    nodes_to_start = [dynaarm_bringup, joy_node, rviz, move_to_predefined_position_node]
+    nodes_to_start = [dynaarm_bringup, joy_node, rviz]
 
     return nodes_to_start
 
