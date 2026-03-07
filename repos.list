@@ -1,19 +1,23 @@
 repositories:
-  duatic_dynaarm_driver:
+  duatic_control:
     type: git
-    url: https://github.com/Duatic/duatic_dynaarm_driver.git
-    version: main
-  duatic_dynaarm_description:
-    type: git
-    url: https://github.com/Duatic/dynaarm_description.git
+    url: https://github.com/Duatic/duatic_control.git
     version: main
   duatic_dynaarm_bringup:
     type: git
     url: https://github.com/Duatic/dynaarm_bringup.git
     version: main
-  duatic_control:
+  duatic_dynaarm_description:
     type: git
-    url: https://github.com/Duatic/duatic_control.git
+    url: https://github.com/Duatic/dynaarm_description.git
+    version: main
+  duatic_dynaarm_driver:
+    type: git
+    url: https://github.com/Duatic/duatic_dynaarm_driver.git
+    version: main
+  duatic_ros2control:
+    type: git
+    url: https://github.com/Duatic/duatic_ros2control.git
     version: main
   duatic_helpers:
     type: git
