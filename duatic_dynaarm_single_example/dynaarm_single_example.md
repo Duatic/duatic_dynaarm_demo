@@ -21,7 +21,7 @@ The configuration was generated with the [MoveIt Setup Assistant](https://moveit
 
 Run the MoveIt example:
 ```
-ros2 launch dynaarm_single_example_moveit_config moveit.launch.py
+ros2 launch duatic_dynaarm_single_example_moveit_config moveit.launch.py
 ```
 
 #### 3. How to configure the description
