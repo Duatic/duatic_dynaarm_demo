@@ -116,6 +116,7 @@ def launch_setup(context, *args, **kwargs):
             ),
         ],
         parameters=[robot_description],
+        condition=IfCondition(LaunchConfiguration("rviz")),
     )
 
     nodes_to_start = [
@@ -167,6 +168,13 @@ def generate_launch_description():
             name="dual",
             default_value="False",
             description="Select the desired version of robot ",
+        )
+    )
+    declared_arguments.append(
+        DeclareLaunchArgument(
+            "rviz",
+            default_value="true",
+            description="Launch RViz2",
         )
     )
 

@@ -29,6 +29,7 @@ from launch.actions import (
     OpaqueFunction,
 )
 
+from launch.conditions import IfCondition
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch.substitutions import LaunchConfiguration, PathJoinSubstitution
 
@@ -63,7 +64,7 @@ def launch_setup(context, *args, **kwargs):
         }.items(),
     )
 
-    # Show RVIZ
+    # Show RVIZ (optional)
     rviz = Node(
         package="rviz2",
         executable="rviz2",
@@ -72,6 +73,7 @@ def launch_setup(context, *args, **kwargs):
         arguments=["-d", PathJoinSubstitution([pkg_dynaarm_description, "config", "config.rviz"])],
         output={"both": "log"},
         remappings=[("/tf", "tf"), ("/tf_static", "tf_static")],
+        condition=IfCondition(LaunchConfiguration("start_rviz")),
     )
 
     # Gamepad input
@@ -109,6 +111,11 @@ def generate_launch_description():
             default_value=get_package_share_directory("duatic_dynaarm_single_example")
             + "/config/controllers.yaml",
             description="Path to the controllers config file",
+        ),
+        DeclareLaunchArgument(
+            "start_rviz",
+            default_value="true",
+            description="Start RViz2 automatically with this launch file.",
         ),
     ]
 
