@@ -30,6 +30,10 @@
         type: duatic_controllers/ForceTorqueBroadcaster
         state: active
 
+      cartesian_pose_controller:
+        type: duatic_controllers/CartesianPoseController
+        state: active
+
 /**/joint_state_broadcaster:
   ros__parameters:
     use_urdf_to_filter: false
@@ -62,7 +66,17 @@
       - wrist_rotation
     endeffector_frame: "flange"
     use_svd_solver: true
-
+/**/cartesian_pose_controller:
+  ros__parameters:
+    joints:
+      - shoulder_rotation
+      - shoulder_flexion
+      - elbow_flexion
+      - forearm_rotation
+      - wrist_flexion
+      - wrist_rotation
+    command_interfaces:
+      - position
 /**/joint_trajectory_controller:
   ros__parameters:
     joints:

@@ -6,9 +6,11 @@ from threading import Thread
 import rclpy
 from rclpy.node import Node
 from rclpy.publisher import Publisher
+import tf2_ros
+import tf2_geometry_msgs
 
-from geometry_msgs.msg import TwistStamped
-from moveit_msgs.srv import ServoCommandType
+from geometry_msgs.msg import PoseStamped
+
 from controller_manager_msgs.srv import SwitchController
 
 abort_loop: bool = False
@@ -26,51 +28,50 @@ def read_char() -> int:
     return ch
 
 
-def input_task(node: Node, publisher: Publisher):
+def input_task(node: Node, publisher: Publisher, tf_buffer: tf2_ros.Buffer):
 
     while not abort_loop:
-        twist = TwistStamped()
-        twist.header.stamp = node.get_clock().now().to_msg()
-        twist.header.frame_id = "wrist_2"
+
+        current_pose_in_base = PoseStamped()
+        current_pose_in_base.header.frame_id = "flange"
 
         input = read_char()
         print(ord(input))
         if ord(input) == 3:
             raise KeyboardInterrupt()
 
-        step = 0.2
+        # current_pose_in_base = tf_buffer.transform(current_pose_in_base, "base")
+
+        pose = current_pose_in_base
+        pose.header.stamp.sec = 0
+        pose.header.stamp.nanosec = 0
+
+        step = 0.002
 
         if input == "a":
-            twist.twist.linear.x = -step
+            pose.pose.position.x = -step
 
         if input == "d":
-            twist.twist.linear.x = +step
+            pose.pose.position.x = +step
 
         if input == "y":
-            twist.twist.linear.y = -step
+            pose.pose.position.y = -step
 
         if input == "x":
-            twist.twist.linear.y = +step
+            pose.pose.position.y = +step
 
         if input == "w":
-            twist.twist.linear.z = +step
+            pose.pose.position.z = +step
 
         if input == "s":
-            twist.twist.linear.z = -step
+            pose.pose.position.z = -step
 
-        if input == "k":
-            twist.twist.angular.x = -step * 60
-        if input == "ö":
-            twist.twist.angular.x = step * 60
+        # pose = tf_buffer.transform(pose, "flange")
+        pose.header.stamp = node.get_clock().now().to_msg()
 
-        if input == "o":
-            twist.twist.angular.z = step * 600
-        if input == "l":
-            twist.twist.angular.z = -step * 60
-
-        print(twist)
+        print(pose)
         # Default is an empty twist
-        publisher.publish(twist)
+        publisher.publish(pose)
 
 
 def switch_controller(node, stop_controllers, start_controllers):
@@ -93,19 +94,17 @@ def main():
 
     node = Node("keypose_pose")
 
-    switch_controller(node, ["freeze_controller"], ["joint_trajectory_controller"])
+    tf_buffer = tf2_ros.Buffer()
+    tf_listener = tf2_ros.TransformListener(tf_buffer, node)
 
-    pose_publisher = node.create_publisher(TwistStamped, "/servo_node/delta_twist_cmds", 10)
-    cmd_type_client = node.create_client(ServoCommandType, "/servo_node/switch_command_type")
+    switch_controller(node, ["freeze_controller"], ["cartesian_pose_controller"])
 
-    switch_cmd = ServoCommandType.Request()
-    switch_cmd.command_type = 1
+    pose_publisher = node.create_publisher(
+        PoseStamped, "/cartesian_pose_controller/target_pose", 10
+    )
 
-    input_thread = Thread(target=input_task, args=(node, pose_publisher))
+    input_thread = Thread(target=input_task, args=(node, pose_publisher, tf_buffer))
     input_thread.start()
-
-    future = cmd_type_client.call_async(switch_cmd)
-    rclpy.spin_until_future_complete(node, future, timeout_sec=1.0)
 
     try:
         rclpy.spin(node)
