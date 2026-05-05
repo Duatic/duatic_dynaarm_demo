@@ -32,7 +32,11 @@
 
       cartesian_pose_controller:
         type: duatic_controllers/CartesianPoseController
-        state: active
+        state: inactive
+      brake_release_controller:
+        type: duatic_controllers/BrakeReleaseController
+        state: inactive
+
 
 /**/joint_state_broadcaster:
   ros__parameters:
@@ -77,6 +81,19 @@
       - wrist_rotation
     command_interfaces:
       - position
+
+/**/brake_release_controller:
+  ros__parameters:
+    joints:
+      - shoulder_rotation
+      - shoulder_flexion
+      - elbow_flexion
+      - forearm_rotation
+      - wrist_flexion
+      - wrist_rotation
+    position_kick: 1.0
+
+
 /**/joint_trajectory_controller:
   ros__parameters:
     joints:
